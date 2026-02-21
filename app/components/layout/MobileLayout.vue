@@ -35,10 +35,8 @@
         <div class="w-6 h-6 border-2 border-primary-600 border-t-transparent rounded-full animate-spin" />
       </div>
 
-      <!-- Page transition -->
-      <Transition name="tab" mode="out-in">
-        <slot />
-      </Transition>
+      <!-- Page content slot -->
+      <slot />
     </main>
 
     <!-- ── Bottom Tab Bar ────────────────────────────────────────────── -->
