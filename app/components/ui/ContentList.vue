@@ -41,7 +41,7 @@
         :key="getKey(item)"
         v-motion
         :initial="{ opacity: 0, x: -8 }"
-        :enter="{ opacity: 1, x: 0, transition: { duration: 200, delay: i * 30 } }"
+        :enter="{ opacity: 1, x: 0, transition: { duration: 200, delay: Number(i) * 30 } }"
         class="flex items-start gap-3 px-3 py-3 rounded-xl cursor-pointer transition-all pressable mb-0.5"
         :class="[
           selectedId === getKey(item)
@@ -105,9 +105,9 @@ const selectedId  = ref<string | number | null>(props.modelValue ?? null)
 
 watch(() => props.modelValue, v => { selectedId.value = v ?? null })
 
-function getKey(item: T)      { return item[props.keyField] as string | number }
-function getLabel(item: T)    { return item[props.labelField] as string }
-function getSublabel(item: T) { return props.sublabelField ? item[props.sublabelField] as string : undefined }
+function getKey(item: T)      { return (item as any)[props.keyField] as string | number }
+function getLabel(item: T)    { return (item as any)[props.labelField] as string }
+function getSublabel(item: T) { return props.sublabelField ? (item as any)[props.sublabelField] as string : undefined }
 
 const filteredItems = computed(() => {
   if (!searchQuery.value) return props.items
