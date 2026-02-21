@@ -32,9 +32,7 @@
       <main class="flex-1 overflow-y-auto scroll-content-area">
         <!-- Two-column on wide screens, single on lg -->
         <div class="container-enterprise py-6">
-          <Transition name="page" mode="out-in">
-            <slot />
-          </Transition>
+          <slot />
         </div>
       </main>
     </div>

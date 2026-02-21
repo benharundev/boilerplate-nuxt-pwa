@@ -13,7 +13,12 @@
 
     <!-- Top metrics row -->
     <div class="grid grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
-      <StatCard v-for="(m, i) in analyticsMetrics" :key="m.key" v-bind="m" :index="i" />
+      <StatCard
+        v-for="(m, i) in analyticsMetrics"
+        :key="m.key"
+        v-bind="(() => { const { key, ...rest } = m; return rest })()"
+        :index="i"
+      />
     </div>
 
     <!-- Charts row -->
@@ -73,11 +78,11 @@
 definePageMeta({ middleware: ['auth', 'tenant'], title: 'Analytics' })
 
 const analyticsMetrics = [
-  { key: 'dau',  label: 'Daily Active Users',  icon: 'lucide:users',        iconColor: 'blue',
+  { key: 'dau',  label: 'Daily Active Users',  icon: 'lucide:users',        iconColor: 'blue' as const,
     value: 3842, previous: 3612, delta: 6.4, trend: 'up' as const, format: 'integer' as const, sparkline: [3100, 3250, 3400, 3520, 3612, 3720, 3842] },
-  { key: 'sess', label: 'Avg. Session Length', icon: 'lucide:clock',         iconColor: 'purple',
+  { key: 'sess', label: 'Avg. Session Length', icon: 'lucide:clock',         iconColor: 'purple' as const,
     value: 8.4,  previous: 7.2, delta: 16.7, trend: 'up' as const, format: 'number' as const, unit: 'min', sparkline: [6.8, 7.0, 7.2, 7.4, 7.8, 8.1, 8.4] },
-  { key: 'conv', label: 'Trial → Paid Conv.',  icon: 'lucide:arrow-up-right', iconColor: 'green',
+  { key: 'conv', label: 'Trial → Paid Conv.',  icon: 'lucide:arrow-up-right', iconColor: 'green' as const,
     value: 32.4, previous: 28.1, delta: 15.3, trend: 'up' as const, format: 'percent' as const, sparkline: [24, 26, 27, 28, 29, 31, 32] },
 ]
 
@@ -116,6 +121,7 @@ const eventColumns = [
 ]
 
 interface EventRow {
+  [key: string]: unknown
   user: string
   type: 'upgrade' | 'login' | 'signup' | 'churn' | string
   details: string

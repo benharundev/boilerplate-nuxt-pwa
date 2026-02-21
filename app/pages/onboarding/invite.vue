@@ -13,7 +13,7 @@
             <div class="relative flex-1">
               <Icon name="lucide:mail" class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
               <input
-                v-model="invites[i].email"
+                v-model="invite.email"
                 type="email"
                 :placeholder="`teammate${i + 1}@company.com`"
                 class="w-full pl-10 pr-4 py-3 rounded-xl border border-[var(--color-border)]
@@ -22,7 +22,7 @@
               />
             </div>
             <select
-              v-model="invites[i].role"
+              v-model="invite.role"
               class="px-3 py-3 rounded-xl border border-[var(--color-border)] bg-white dark:bg-slate-800
                      text-callout text-slate-600 dark:text-slate-300 focus:outline-none focus:ring-2 focus:ring-primary-500"
             >
@@ -61,13 +61,13 @@
 </template>
 
 <script setup lang="ts">
-import type { TenantRole } from '~/types'
+import type { UserRole } from '~/types'
 
 definePageMeta({ middleware: ['auth'], layout: false })
 
 interface InviteRow {
   email: string
-  role: TenantRole
+  role: UserRole
 }
 
 const invites = ref<InviteRow[]>([
