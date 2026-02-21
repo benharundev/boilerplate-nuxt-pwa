@@ -16,6 +16,13 @@ export default defineNuxtConfig({
         '@nuxt/image',
     ],
 
+    // ─── Components ─────────────────────────────────────────────────────────────
+    components: [
+        { path: '~/components/ui', pathPrefix: false },
+        { path: '~/components/layout', pathPrefix: false },
+        '~/components',
+    ],
+
     // ─── Global CSS ─────────────────────────────────────────────────────────────
     css: ['~/assets/css/main.css'],
 

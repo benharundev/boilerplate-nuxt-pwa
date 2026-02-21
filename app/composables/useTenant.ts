@@ -49,7 +49,9 @@ const tenants = ref<TenantMembership[]>(MOCK_MEMBERSHIPS)
 const isLoading = ref(false)
 const error = ref<string | null>(null)
 
-export function useTenant() {
+import type { RouteLocationNormalized } from 'vue-router'
+
+export function useTenant(providedRoute?: RouteLocationNormalized) {
     const cookie = useCookie<string>(TENANT_COOKIE_KEY, {
         maxAge: 60 * 60 * 24 * 30,
         path: '/',
@@ -57,7 +59,7 @@ export function useTenant() {
         secure: true,
     })
 
-    const route = useRoute()
+    const route = providedRoute || useRoute()
 
     // ── Tenant resolution ────────────────────────────────────────────────────
     const tenantSlug = computed<string>(() => {

@@ -4,7 +4,7 @@ import type { UserRole } from '~/types'
 export default defineNuxtRouteMiddleware((to) => {
     if (import.meta.server) return
 
-    const { tenant, tenantSlug } = useTenant()
+    const { tenant, tenantSlug } = useTenant(to)
     const { hasRole } = useAuth()
 
     // ── Admin route guard ─────────────────────────────────────────────────

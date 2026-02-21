@@ -37,7 +37,7 @@ export default defineNuxtPlugin(() => {
 
     return {
         provide: {
-            pwa: {
+            appPwa: {
                 isStandalone,
                 showInstallPrompt: async () => {
                     if (!deferredPrompt) return false

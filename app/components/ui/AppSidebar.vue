@@ -157,7 +157,6 @@ const navItems = computed(() => {
     // Main
     { section: 'Main', label: 'Dashboard',  icon: 'lucide:layout-dashboard', to: '/' },
     { label: 'Analytics',   icon: 'lucide:bar-chart-3',    to: '/explore' },
-    { label: 'Reports',     icon: 'lucide:file-bar-chart', to: '/reports' },
 
     // Workspace
     { section: 'Workspace', label: 'Team',    icon: 'lucide:users',        to: '/settings/team' },
