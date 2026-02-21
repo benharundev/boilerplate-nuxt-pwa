@@ -11,7 +11,7 @@
       <StatCard
         v-for="(m, i) in platformMetrics"
         :key="m.key"
-        v-bind="m"
+        v-bind="(() => { const { key, ...rest } = m; return rest })()"
         :index="i"
       />
     </div>
@@ -53,8 +53,7 @@
           <div
             v-for="(bar, i) in mrrBars"
             :key="i"
-            class="flex-1 bg-primary-500 rounded-t-sm opacity-80 hover:opacity-100 transition-all
-                   relative group"
+            class="flex-1 bg-primary-500 rounded-t-sm opacity-80 hover:opacity-100 transition-all relative group"
             :style="{ height: bar.h + '%' }"
           >
             <div class="absolute -top-7 left-1/2 -translate-x-1/2 bg-slate-900 text-white
@@ -75,13 +74,13 @@
 definePageMeta({ middleware: ['auth', 'tenant'], title: 'Admin' })
 
 const platformMetrics = [
-  { key: 'tenants', label: 'Total Tenants',  icon: 'lucide:building-2', iconColor: 'blue',
+  { key: 'tenants', label: 'Total Tenants',  icon: 'lucide:building-2', iconColor: 'blue' as const,
     value: 428, previous: 391, delta: 9.5, trend: 'up' as const, format: 'integer' as const, sparkline: [310, 330, 355, 372, 391, 408, 428] },
-  { key: 'mrr', label: 'Platform MRR',  icon: 'lucide:dollar-sign', iconColor: 'green',
+  { key: 'mrr', label: 'Platform MRR',  icon: 'lucide:dollar-sign', iconColor: 'green' as const,
     value: 194830000, previous: 172400000, delta: 13.0, trend: 'up' as const, format: 'currency' as const, sparkline: [1420, 1520, 1640, 1720, 1820, 1905, 1948] },
-  { key: 'users', label: 'Total Users', icon: 'lucide:users', iconColor: 'purple',
+  { key: 'users', label: 'Total Users', icon: 'lucide:users', iconColor: 'purple' as const,
     value: 12841, previous: 11204, delta: 14.6, trend: 'up' as const, format: 'integer' as const, sparkline: [9800, 10200, 10800, 11100, 11400, 12000, 12841] },
-  { key: 'churn', label: 'Platform Churn', icon: 'lucide:user-minus', iconColor: 'red',
+  { key: 'churn', label: 'Platform Churn', icon: 'lucide:user-minus', iconColor: 'red' as const,
     value: 1.2, previous: 1.5, delta: -0.3, trend: 'down' as const, format: 'percent' as const, sparkline: [1.9, 1.8, 1.6, 1.5, 1.4, 1.3, 1.2] },
 ]
 

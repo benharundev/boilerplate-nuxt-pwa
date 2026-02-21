@@ -127,19 +127,20 @@ const padX   = 4
 const padY   = 4
 
 // ── Computed values ───────────────────────────────────────────────────────────
-const minV = computed(() => Math.min(...props.data))
-const maxV = computed(() => Math.max(...props.data))
-const span = computed(() => maxV.value - minV.value || 1)
+const safeData = computed(() => props.data ?? [])
+const minV = computed(() => safeData.value.length ? Math.min(...safeData.value) : 0)
+const maxV = computed(() => safeData.value.length ? Math.max(...safeData.value) : 1)
+const span = computed(() => (maxV.value - minV.value) || 1)
 
 function toY(v: number) {
   return viewH - padY - ((v - minV.value) / span.value) * (viewH - padY * 2)
 }
 function toX(i: number) {
-  return padX + (i / (props.data.length - 1)) * (viewW - padX * 2)
+  return padX + (i / (Math.max(1, safeData.value.length - 1))) * (viewW - padX * 2)
 }
 
 const points = computed(() =>
-  props.data.map((v, i) => ({ x: toX(i), y: toY(v) })),
+  safeData.value.map((v, i) => ({ x: toX(i), y: toY(v) })),
 )
 
 const linePath = computed(() => {
@@ -152,11 +153,13 @@ const areaPath = computed(() => {
   const lineCoords = points.value.map(p => `${p.x},${p.y}`).join(' L ')
   const last = points.value[points.value.length - 1]
   const first = points.value[0]
+  if (!last || !first) return ''
   return `M ${lineCoords} L ${last.x},${viewH} L ${first.x},${viewH} Z`
 })
 
 const bars = computed(() => {
-  const count = props.data.length
+  const count = safeData.value.length
+  if (count === 0) return []
   const totalW = viewW - padX * 2
   const barW   = totalW / count * 0.7
   const gap    = totalW / count * 0.3

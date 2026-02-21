@@ -3,6 +3,8 @@
 // Works both server-side (via request headers) and client-side reactively.
 
 import type { Tenant, TenantMembership, PlanId, User } from '~/types'
+import { ref, computed, readonly } from 'vue'
+import { useCookie, useRoute, navigateTo } from '#imports'
 
 const TENANT_COOKIE_KEY = 'active_tenant_slug'
 

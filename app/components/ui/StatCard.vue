@@ -3,7 +3,7 @@
   <div
     v-motion
     :initial="{ opacity: 0, y: 16 }"
-    :enter="{ opacity: 1, y: 0, transition: { duration: 400, delay: props.index * 80, ease: 'easeOut' } }"
+    :enter="{ opacity: 1, y: 0, transition: { duration: 400, delay: (props.index || 0) * 80, ease: 'easeOut' } }"
     class="liquid-glass rounded-2xl p-5 pressable cursor-default"
   >
     <!-- Header -->
@@ -112,8 +112,8 @@ const linePath = computed(() => {
 const areaPath = computed(() => {
   const data = props.sparkline ?? []
   if (data.length < 2) return ''
-  const min = Math.min(...data)
-  const max = Math.max(...data)
+  const min = data.length ? Math.min(...data) : 0
+  const max = data.length ? Math.max(...data) : 1
   const range = max - min || 1
   const W = 80, H = 36, pad = 2
   const points = data.map((v, i) => {

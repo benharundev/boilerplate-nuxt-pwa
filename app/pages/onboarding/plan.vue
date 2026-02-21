@@ -72,10 +72,10 @@ const selectedPlan = ref<PlanId>('pro')
 const isLoading = ref(false)
 
 const plans = [
-  { id: 'free',       name: 'Free',       monthlyPrice: 0,    description: 'Up to 3 seats. Great for small teams.', isPopular: false },
-  { id: 'starter',    name: 'Starter',    monthlyPrice: 99,   description: 'Up to 10 seats, 10 GB storage, email support.', isPopular: false },
-  { id: 'pro',        name: 'Pro',        monthlyPrice: 299,  description: 'Up to 25 seats, 50 GB, API access, priority support.', isPopular: true },
-  { id: 'enterprise', name: 'Enterprise', monthlyPrice: 999,  description: 'Unlimited seats, SSO, SLA, dedicated CSM.', isPopular: false },
+  { id: 'free' as PlanId,       name: 'Free',       monthlyPrice: 0,    description: 'Up to 3 seats. Great for small teams.', isPopular: false },
+  { id: 'starter' as PlanId,    name: 'Starter',    monthlyPrice: 99,   description: 'Up to 10 seats, 10 GB storage, email support.', isPopular: false },
+  { id: 'pro' as PlanId,        name: 'Pro',        monthlyPrice: 299,  description: 'Up to 25 seats, 50 GB, API access, priority support.', isPopular: true },
+  { id: 'enterprise' as PlanId, name: 'Enterprise', monthlyPrice: 999,  description: 'Unlimited seats, SSO, SLA, dedicated CSM.', isPopular: false },
 ]
 
 async function finish() {

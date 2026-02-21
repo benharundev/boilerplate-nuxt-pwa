@@ -25,20 +25,22 @@ export function useSwipeBack(options: SwipeBackOptions = {}) {
     let startY = 0
     let startedFromEdge = false
 
-    function onTouchStart(e: TouchEvent) {
-        const touch = e.touches[0]
-        startX = touch.clientX
-        startY = touch.clientY
+    function onTouchStart(e: Event) {
+        const evt = e as TouchEvent
+        const touch = evt.touches[0]
+        startX = touch!.clientX
+        startY = touch!.clientY
         startedFromEdge = startX < edgeThreshold
         isSwipingBack.value = false
         swipeProgress.value = 0
     }
 
-    function onTouchMove(e: TouchEvent) {
+    function onTouchMove(e: Event) {
         if (!startedFromEdge) return
-        const touch = e.touches[0]
-        const dx = touch.clientX - startX
-        const dy = touch.clientY - startY
+        const evt = e as TouchEvent
+        const touch = evt.touches[0]
+        const dx = touch!.clientX - startX
+        const dy = touch!.clientY - startY
 
         // Only treat as horizontal swipe if horizontal dominates
         if (Math.abs(dx) < Math.abs(dy)) {
@@ -50,18 +52,19 @@ export function useSwipeBack(options: SwipeBackOptions = {}) {
             isSwipingBack.value = true
             swipeProgress.value = Math.min(dx / 200, 1)
             // Prevent page scroll
-            e.preventDefault()
+            evt.preventDefault()
         }
     }
 
-    function onTouchEnd(e: TouchEvent) {
+    function onTouchEnd(e: Event) {
         if (!startedFromEdge || !isSwipingBack.value) {
             reset()
             return
         }
 
-        const touch = e.changedTouches[0]
-        const dx = touch.clientX - startX
+        const evt = e as TouchEvent
+        const touch = evt.changedTouches[0]
+        const dx = touch!.clientX - startX
 
         if (dx >= minSwipeDistance) {
             if (enableHaptic) haptics.light()

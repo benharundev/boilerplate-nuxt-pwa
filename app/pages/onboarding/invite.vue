@@ -61,8 +61,16 @@
 </template>
 
 <script setup lang="ts">
+import type { TenantRole } from '~/types'
+
 definePageMeta({ middleware: ['auth'], layout: false })
-const invites = ref([
+
+interface InviteRow {
+  email: string
+  role: TenantRole
+}
+
+const invites = ref<InviteRow[]>([
   { email: '', role: 'member' },
   { email: '', role: 'member' },
 ])

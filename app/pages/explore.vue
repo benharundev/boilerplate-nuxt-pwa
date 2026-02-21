@@ -94,7 +94,13 @@ function heatClass(val: number) {
   return 'bg-primary-600'
 }
 
-const topPages = [
+interface TopPage {
+  path: string
+  views: number
+  pct: number
+}
+
+const topPages: TopPage[] = [
   { path: '/dashboard',         views: 48204, pct: 100 },
   { path: '/explore',           views: 31820, pct: 66 },
   { path: '/settings/billing',  views: 14290, pct: 30 },
@@ -109,7 +115,14 @@ const eventColumns = [
   { key: 'time',    label: 'Time',      sortable: true },
 ]
 
-const eventRows = [
+interface EventRow {
+  user: string
+  type: 'upgrade' | 'login' | 'signup' | 'churn' | string
+  details: string
+  time: string
+}
+
+const eventRows: EventRow[] = [
   { user: 'alex@acme.com',   type: 'upgrade', details: 'Upgraded from Starter → Pro',   time: '2m ago' },
   { user: 'siti@globex.com', type: 'login',   details: 'Login from MacBook (Chrome)',    time: '5m ago' },
   { user: 'raj@initech.com', type: 'signup',  details: 'New workspace: initech',         time: '12m ago' },
