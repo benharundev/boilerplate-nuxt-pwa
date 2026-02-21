@@ -119,8 +119,7 @@ const props = withDefaults(defineProps<{
   gridCount: 4,
 })
 
-const uid    = Math.random().toString(36).slice(2, 8)
-const gradId = `kpi-grad-${uid}`
+const gradId = `kpi-grad-${useId()}`
 const viewW  = 200
 const viewH  = 80
 const padX   = 4

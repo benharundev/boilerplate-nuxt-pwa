@@ -1,6 +1,6 @@
 <template>
-  <!-- Full-screen onboarding layout with step indicator and animated bg -->
   <div class="min-h-dvh flex flex-col bg-slate-50 dark:bg-slate-950 gradient-mesh overflow-hidden">
+    <!-- Full-screen onboarding layout with step indicator and animated bg -->
     <!-- Top progress bar -->
     <div class="h-1 bg-slate-200 dark:bg-slate-800">
       <div

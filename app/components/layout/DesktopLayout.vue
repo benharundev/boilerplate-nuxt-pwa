@@ -44,7 +44,10 @@ const sidebarCollapsed = ref(false)
 const { isUltraWide } = useDeviceType()
 
 // Auto-collapse on medium desktop, expand on ultrawide
-watchEffect(() => {
-  sidebarCollapsed.value = !isUltraWide.value
+// Run only on client after hydration to prevent SSR mismatch
+onMounted(() => {
+  watchEffect(() => {
+    sidebarCollapsed.value = !isUltraWide.value
+  })
 })
 </script>

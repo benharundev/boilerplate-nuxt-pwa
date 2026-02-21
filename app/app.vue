@@ -1,5 +1,5 @@
 <template>
-  <div id="app" :class="{ dark: isDark }">
+  <div id="app">
     <!-- Swipe-back progress strip (mobile only) -->
     <div
       v-if="isMobile && swipeProgress > 0"
@@ -58,7 +58,6 @@ watch(isMobile, (val) => {
 
 // ── Head defaults ────────────────────────────────────────────────────────────
 useHead({
-  htmlAttrs: { lang: 'en' },
-  bodyAttrs: { class: computed(() => isDark.value ? 'dark' : 'light') },
+  htmlAttrs: { lang: 'en' }
 })
 </script>

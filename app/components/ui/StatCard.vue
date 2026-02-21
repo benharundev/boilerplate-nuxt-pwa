@@ -64,7 +64,7 @@ const props = defineProps<Metric & {
   index?: number
 }>()
 
-const uid = Math.random().toString(36).slice(2, 8)
+const uid = useId()
 
 const iconWellColor = computed(() => `icon-well-${props.iconColor ?? 'blue'}`)
 

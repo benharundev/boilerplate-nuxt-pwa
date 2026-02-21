@@ -1,10 +1,10 @@
 <template>
-  <!-- Full-screen auth layout — centred card on frosted glass gradient bg -->
   <div
     class="min-h-dvh flex flex-col items-center justify-center
            bg-slate-50 dark:bg-slate-950
            gradient-mesh px-4 py-12"
   >
+    <!-- Full-screen auth layout — centred card on frosted glass gradient bg -->
     <!-- Logo + brand -->
     <div
       v-motion

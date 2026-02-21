@@ -26,16 +26,23 @@
     <!-- Right slot (search, notifications, avatar) -->
     <div class="flex items-center gap-1 justify-end">
       <!-- Theme toggle -->
-      <button
-        class="touch-target rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
-        :title="isDark ? 'Switch to light mode' : 'Switch to dark mode'"
-        @click="toggleTheme"
-      >
-        <Icon
-          :name="isDark ? 'lucide:sun' : 'lucide:moon'"
-          class="w-4.5 h-4.5 text-slate-500"
-        />
-      </button>
+      <ClientOnly>
+        <button
+          class="touch-target rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+          :title="isDark ? 'Switch to light mode' : 'Switch to dark mode'"
+          @click="toggleTheme"
+        >
+          <Icon
+            :name="isDark ? 'lucide:sun' : 'lucide:moon'"
+            class="w-4.5 h-4.5 text-slate-500"
+          />
+        </button>
+        <template #fallback>
+          <button class="touch-target rounded-xl transition-colors">
+            <div class="w-4.5 h-4.5 rounded-full bg-slate-200 dark:bg-slate-700 animate-pulse" />
+          </button>
+        </template>
+      </ClientOnly>
 
       <!-- Notifications -->
       <button

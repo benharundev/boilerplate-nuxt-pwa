@@ -1,6 +1,6 @@
 <template>
-  <!-- Adaptive layout: renders correct layout per device type -->
   <div class="h-full w-full">
+    <!-- Adaptive layout: renders correct layout per device type -->
     <DesktopLayout v-if="isDesktop">
       <slot />
     </DesktopLayout>

@@ -86,9 +86,9 @@ const analyticsMetrics = [
     value: 32.4, previous: 28.1, delta: 15.3, trend: 'up' as const, format: 'percent' as const, sparkline: [24, 26, 27, 28, 29, 31, 32] },
 ]
 
-// Heat map: random-ish activity data (0-100)
+// Heat map: deterministic pseudo-random activity data (0-100) to prevent hydration mismatches
 const activityHeatmap = Array.from({ length: 56 }, (_, i) =>
-  Math.round(20 + Math.random() * 80 * (i / 56)),
+  Math.round(20 + Math.abs(Math.sin(i * 12.34)) * 80 * (i / 56)),
 )
 
 function heatClass(val: number) {
