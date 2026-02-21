@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+# Disallow admin and API routes from indexing
+Disallow: /admin/
+Disallow: /api/
+Disallow: /auth/
+Disallow: /onboarding/
+
+Sitemap: https://app.enterprise.io/sitemap.xml

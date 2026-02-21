@@ -1,0 +1,271 @@
+/* ─────────────────────────────────────────────────────────────────────────────
+   transitions.css — Page, Tab, Sidebar, Sheet & Component Transitions
+   
+   Uses Apple's recommended easing curves:
+   - Decelerate (open): cubic-bezier(0.0, 0.0, 0.2, 1)
+   - Accelerate (close): cubic-bezier(0.4, 0.0, 1, 1)
+   - Standard (move): cubic-bezier(0.4, 0.0, 0.2, 1)
+   - Spring (bounce): cubic-bezier(0.34, 1.56, 0.64, 1)
+   ───────────────────────────────────────────────────────────────────────────── */
+
+:root {
+    --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+    --ease-spring-soft: cubic-bezier(0.25, 1.00, 0.50, 1);
+    --ease-apple: cubic-bezier(0.42, 0.00, 0.58, 1.00);
+    --ease-decelerate: cubic-bezier(0.00, 0.00, 0.20, 1);
+    --ease-accelerate: cubic-bezier(0.40, 0.00, 1.00, 1);
+    --ease-standard: cubic-bezier(0.40, 0.00, 0.20, 1);
+
+    --duration-fast: 150ms;
+    --duration-normal: 280ms;
+    --duration-slow: 420ms;
+    --duration-slower: 560ms;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   PAGE TRANSITION — Slide + Fade (iOS push navigation feel)
+   ═════════════════════════════════════════════════════════════════════════ */
+
+.page-enter-active {
+    transition: opacity var(--duration-normal) var(--ease-decelerate),
+        transform var(--duration-normal) var(--ease-decelerate);
+}
+
+.page-leave-active {
+    transition: opacity var(--duration-fast) var(--ease-accelerate),
+        transform var(--duration-fast) var(--ease-accelerate);
+}
+
+.page-enter-from {
+    opacity: 0;
+    transform: translateX(24px);
+}
+
+.page-leave-to {
+    opacity: 0;
+    transform: translateX(-12px);
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   LAYOUT TRANSITION — Cross-fade
+   ═════════════════════════════════════════════════════════════════════════ */
+
+.layout-enter-active,
+.layout-leave-active {
+    transition: opacity var(--duration-normal) var(--ease-apple);
+}
+
+.layout-enter-from,
+.layout-leave-to {
+    opacity: 0;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   TAB TRANSITION — Scale + Fade (iOS tab switching)
+   ═════════════════════════════════════════════════════════════════════════ */
+
+.tab-enter-active {
+    transition: opacity var(--duration-fast) var(--ease-decelerate),
+        transform var(--duration-fast) var(--ease-spring-soft);
+}
+
+.tab-leave-active {
+    transition: opacity var(--duration-fast) var(--ease-accelerate);
+    position: absolute;
+    width: 100%;
+}
+
+.tab-enter-from {
+    opacity: 0;
+    transform: scale(0.97) translateY(6px);
+}
+
+.tab-leave-to {
+    opacity: 0;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   SIDEBAR TRANSITION — Slide from left
+   ═════════════════════════════════════════════════════════════════════════ */
+
+.sidebar-enter-active {
+    transition: transform var(--duration-normal) var(--ease-decelerate),
+        opacity var(--duration-normal) var(--ease-decelerate);
+}
+
+.sidebar-leave-active {
+    transition: transform var(--duration-fast) var(--ease-accelerate),
+        opacity var(--duration-fast) var(--ease-accelerate);
+}
+
+.sidebar-enter-from {
+    transform: translateX(-100%);
+    opacity: 0;
+}
+
+.sidebar-leave-to {
+    transform: translateX(-100%);
+    opacity: 0;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   BOTTOM SHEET TRANSITION — Slide up from bottom
+   ═════════════════════════════════════════════════════════════════════════ */
+
+.sheet-enter-active {
+    transition: transform var(--duration-normal) var(--ease-spring-soft),
+        opacity var(--duration-normal) var(--ease-decelerate);
+}
+
+.sheet-leave-active {
+    transition: transform var(--duration-fast) var(--ease-accelerate),
+        opacity var(--duration-fast) var(--ease-accelerate);
+}
+
+.sheet-enter-from {
+    transform: translateY(100%);
+    opacity: 0;
+}
+
+.sheet-leave-to {
+    transform: translateY(100%);
+    opacity: 0;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   MODAL / OVERLAY TRANSITION — Scale + Fade (iOS modal present)
+   ═════════════════════════════════════════════════════════════════════════ */
+
+.modal-enter-active {
+    transition: opacity var(--duration-normal) var(--ease-decelerate),
+        transform var(--duration-normal) var(--ease-spring-soft);
+}
+
+.modal-leave-active {
+    transition: opacity var(--duration-fast) var(--ease-accelerate),
+        transform var(--duration-fast) var(--ease-accelerate);
+}
+
+.modal-enter-from {
+    opacity: 0;
+    transform: scale(0.94) translateY(20px);
+}
+
+.modal-leave-to {
+    opacity: 0;
+    transform: scale(0.94) translateY(10px);
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   FADE TRANSITION — Generic fade
+   ═════════════════════════════════════════════════════════════════════════ */
+
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity var(--duration-fast) var(--ease-apple);
+}
+
+.fade-enter-from,
+.fade-leave-to {
+    opacity: 0;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   POP — Spring scale with haptic-like snap
+   ═════════════════════════════════════════════════════════════════════════ */
+
+.pop-enter-active {
+    transition: opacity var(--duration-fast) var(--ease-decelerate),
+        transform var(--duration-normal) var(--ease-spring);
+}
+
+.pop-leave-active {
+    transition: opacity var(--duration-fast) var(--ease-accelerate),
+        transform var(--duration-fast) var(--ease-accelerate);
+}
+
+.pop-enter-from {
+    opacity: 0;
+    transform: scale(0.80);
+}
+
+.pop-leave-to {
+    opacity: 0;
+    transform: scale(0.90);
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   STAGGER HELPER — Add to list items for cascaded entrance
+   ═════════════════════════════════════════════════════════════════════════ */
+
+.stagger>*:nth-child(1) {
+    transition-delay: 0ms;
+}
+
+.stagger>*:nth-child(2) {
+    transition-delay: 40ms;
+}
+
+.stagger>*:nth-child(3) {
+    transition-delay: 80ms;
+}
+
+.stagger>*:nth-child(4) {
+    transition-delay: 120ms;
+}
+
+.stagger>*:nth-child(5) {
+    transition-delay: 160ms;
+}
+
+.stagger>*:nth-child(6) {
+    transition-delay: 200ms;
+}
+
+.stagger>*:nth-child(7) {
+    transition-delay: 240ms;
+}
+
+.stagger>*:nth-child(8) {
+    transition-delay: 280ms;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   INTERACTION STATES — Press & Hover micro-animations
+   ═════════════════════════════════════════════════════════════════════════ */
+
+.pressable {
+    transition: transform var(--duration-fast) var(--ease-accelerate),
+        box-shadow var(--duration-fast) var(--ease-accelerate),
+        filter var(--duration-fast) var(--ease-accelerate);
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.pressable:active {
+    transform: scale(0.96);
+    filter: brightness(0.90);
+}
+
+.pressable:hover:not(:active) {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+}
+
+/* ── Reduced Motion overrides ────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    ::before,
+    ::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    .page-enter-from,
+    .page-leave-to {
+        transform: none !important;
+    }
+}

@@ -1,0 +1,188 @@
+/* ─────────────────────────────────────────────────────────────────────────────
+   typography.css — Dynamic Type Scale inspired by Apple HIG
+   
+   Maps to Inter font with `clamp()` fluid scaling across viewport widths.
+   Mirrors iOS Dynamic Type levels (caption2 → largeTitle) for semantics.
+   ───────────────────────────────────────────────────────────────────────────── */
+
+:root {
+    /* ── Font stack (Inter mirrors SF Pro for web) ───────────────────────── */
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display',
+        'SF Pro Text', system-ui, sans-serif;
+    --font-mono: 'JetBrains Mono', 'SF Mono', ui-monospace, Menlo, monospace;
+
+    /* ── Letter-spacing (HIG values) ────────────────────────────────────── */
+    --tracking-tight: -0.03em;
+    --tracking-normal: -0.01em;
+    --tracking-wide: 0.01em;
+    --tracking-wider: 0.02em;
+
+    /* ── Line-height scale ───────────────────────────────────────────────── */
+    --leading-tight: 1.20;
+    --leading-snug: 1.35;
+    --leading-normal: 1.50;
+    --leading-relaxed: 1.65;
+
+    /* ── Dynamic Type scale (clamp: min, preferred, max) ────────────────── */
+    --text-caption2: clamp(10px, 1.8vw, 11px);
+    /* iOS caption2  */
+    --text-caption1: clamp(11px, 2.0vw, 12px);
+    /* iOS caption1  */
+    --text-footnote: clamp(12px, 2.2vw, 13px);
+    /* iOS footnote  */
+    --text-subhead: clamp(14px, 2.5vw, 15px);
+    /* iOS subhead   */
+    --text-callout: clamp(15px, 2.7vw, 16px);
+    /* iOS callout   */
+    --text-body: clamp(16px, 3.0vw, 17px);
+    /* iOS body      */
+    --text-headline: clamp(16px, 3.0vw, 17px);
+    /* iOS headline  */
+    --text-title3: clamp(19px, 3.4vw, 20px);
+    /* iOS title3    */
+    --text-title2: clamp(21px, 3.8vw, 22px);
+    /* iOS title2    */
+    --text-title1: clamp(26px, 4.5vw, 28px);
+    /* iOS title1    */
+    --text-large-title: clamp(30px, 5.5vw, 34px);
+    /* iOS largeTitle */
+
+    /* ── Font weight tokens ──────────────────────────────────────────────── */
+    --weight-light: 300;
+    --weight-regular: 400;
+    --weight-medium: 500;
+    --weight-semibold: 600;
+    --weight-bold: 700;
+    --weight-extrabold: 800;
+}
+
+/* ── Utility Classes ─────────────────────────────────────────────────────── */
+
+.text-caption2 {
+    font-size: var(--text-caption2);
+    line-height: var(--leading-tight);
+}
+
+.text-caption1 {
+    font-size: var(--text-caption1);
+    line-height: var(--leading-tight);
+}
+
+.text-footnote {
+    font-size: var(--text-footnote);
+    line-height: var(--leading-snug);
+}
+
+.text-subhead {
+    font-size: var(--text-subhead);
+    line-height: var(--leading-snug);
+}
+
+.text-callout {
+    font-size: var(--text-callout);
+    line-height: var(--leading-normal);
+}
+
+.text-body {
+    font-size: var(--text-body);
+    line-height: var(--leading-normal);
+}
+
+.text-headline {
+    font-size: var(--text-headline);
+    line-height: var(--leading-snug);
+    font-weight: var(--weight-semibold);
+}
+
+.text-title3 {
+    font-size: var(--text-title3);
+    line-height: var(--leading-snug);
+    font-weight: var(--weight-semibold);
+}
+
+.text-title2 {
+    font-size: var(--text-title2);
+    line-height: var(--leading-tight);
+    font-weight: var(--weight-bold);
+}
+
+.text-title1 {
+    font-size: var(--text-title1);
+    line-height: var(--leading-tight);
+    font-weight: var(--weight-bold);
+    letter-spacing: var(--tracking-tight);
+}
+
+.text-large-title {
+    font-size: var(--text-large-title);
+    line-height: 1.10;
+    font-weight: var(--weight-extrabold);
+    letter-spacing: var(--tracking-tight);
+}
+
+/* ── Enterprise heading utility overrides ────────────────────────────────── */
+
+h1,
+.h1 {
+    font-size: var(--text-large-title);
+    font-weight: var(--weight-extrabold);
+    letter-spacing: var(--tracking-tight);
+    line-height: 1.10;
+}
+
+h2,
+.h2 {
+    font-size: var(--text-title1);
+    font-weight: var(--weight-bold);
+    letter-spacing: var(--tracking-tight);
+    line-height: 1.15;
+}
+
+h3,
+.h3 {
+    font-size: var(--text-title2);
+    font-weight: var(--weight-semibold);
+    letter-spacing: var(--tracking-normal);
+}
+
+h4,
+.h4 {
+    font-size: var(--text-title3);
+    font-weight: var(--weight-semibold);
+}
+
+h5,
+.h5 {
+    font-size: var(--text-headline);
+    font-weight: var(--weight-semibold);
+}
+
+h6,
+.h6 {
+    font-size: var(--text-callout);
+    font-weight: var(--weight-semibold);
+}
+
+/* ── Numeric / Tabular Figures ───────────────────────────────────────────── */
+.tabular-nums {
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: 'tnum';
+}
+
+.proportional {
+    font-variant-numeric: proportional-nums;
+}
+
+.slashed-zero {
+    font-feature-settings: 'zero';
+}
+
+/* ── Shimmer Text (gradient) ─────────────────────────────────────────────── */
+.text-gradient {
+    background: linear-gradient(135deg, #1C6EF2 0%, #06B6D4 50%, #1C6EF2 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shimmer 3s linear infinite;
+}

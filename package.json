@@ -1,0 +1,38 @@
+{
+    "name": "boilerplate-nuxt-pwa",
+    "version": "1.0.0",
+    "private": true,
+    "type": "module",
+    "description": "Enterprise-grade Nuxt 4 PWA with Apple-Material hybrid design system",
+    "engines": {
+        "node": ">=22.12.0",
+        "pnpm": ">=9.0.0"
+    },
+    "scripts": {
+        "dev": "nuxt dev",
+        "build": "nuxt build",
+        "generate": "nuxt generate",
+        "preview": "nuxt preview",
+        "postinstall": "nuxt prepare",
+        "typecheck": "nuxt typecheck",
+        "lint": "eslint . --ext .ts,.vue,.js"
+    },
+    "dependencies": {
+        "@nuxt/fonts": "^0.10.3",
+        "@nuxt/icon": "^1.10.3",
+        "@nuxt/image": "^1.9.0",
+        "@vite-pwa/nuxt": "^1.0.0",
+        "@vueuse/core": "^12.5.0",
+        "@vueuse/motion": "^2.2.6",
+        "lucide-vue-next": "^0.475.0",
+        "nuxt": "^4.0.0"
+    },
+    "devDependencies": {
+        "@nuxtjs/tailwindcss": "^6.14.0",
+        "@types/node": "^22.13.0",
+        "autoprefixer": "^10.4.20",
+        "postcss": "^8.5.1",
+        "tailwindcss": "^3.4.17",
+        "typescript": "^5.7.3"
+    }
+}
