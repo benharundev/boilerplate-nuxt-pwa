@@ -29,9 +29,7 @@
         </NavigationBar>
 
         <main class="flex-1 overflow-y-auto scroll-content-area px-5 py-5">
-          <Transition name="tab" mode="out-in">
-            <slot />
-          </Transition>
+          <slot />
         </main>
       </div>
     </template>
@@ -73,9 +71,7 @@
 
         <!-- Scrollable content; pb for bottom tab bar -->
         <main class="flex-1 overflow-y-auto scroll-content-area px-4 pb-[83px]">
-          <Transition name="tab" mode="out-in">
-            <slot />
-          </Transition>
+          <slot />
         </main>
 
         <!-- Persistent bottom tab bar -->
