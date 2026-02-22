@@ -2,6 +2,11 @@
 export default defineNuxtConfig({
     compatibilityDate: '2025-11-01',
 
+    // PWA dashboard — no public-facing SEO pages; the server cannot resolve
+    // viewport width so device-type layouts always mismatch during hydration.
+    // Disabling SSR makes the app a pure SPA/PWA with no hydration issues.
+    ssr: false,
+
     future: {
         compatibilityVersion: 4,
     },
@@ -72,8 +77,11 @@ export default defineNuxtConfig({
                 },
             ],
         },
-        pageTransition: { name: 'page', mode: 'out-in' },
-        layoutTransition: { name: 'layout', mode: 'out-in' },
+        // Note: pageTransition and layoutTransition are intentionally omitted.
+        // With ssr: false, Nuxt wraps the layout in an internal <ClientOnly>
+        // (fragment) which conflicts with <Transition> requiring a single
+        // element root, causing a Vue warning on every page load.
+        // Add per-page transitions via definePageMeta({ pageTransition }) instead.
     },
 
     // ─── Fonts ──────────────────────────────────────────────────────────────────
@@ -190,6 +198,6 @@ export default defineNuxtConfig({
 
     // ─── Dev ────────────────────────────────────────────────────────────────────
     devtools: {
-        enabled: true,
+        enabled: false,
     },
 })
